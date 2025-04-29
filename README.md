@@ -1,0 +1,1 @@
+#Evenzy - A platform to manage events for colleges
