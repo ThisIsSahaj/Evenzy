@@ -16,7 +16,7 @@ const AllEventsCards = ({ event }: CardProps) => {
 
 
   return (
-    <div className="group relative flex min-h-[380px] w-48 sm:w-full  flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[438px]">
+    <div className="group relative flex min-w-[230px] sm:min-w-[380px] h-[520px] sm:h-[580px] sm:w-full  flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[438px]">
       <Link
         href={`/events/${event._id}`}
         style={{ backgroundImage: `url(${event.imageUrl})` }}
@@ -37,6 +37,7 @@ const AllEventsCards = ({ event }: CardProps) => {
 
         <Link href={`/events/${event._id}`}>
           <p className="p-medium-16 md:p-medium-20 line-clamp-2 flex-1 text-black">{event.title}</p>
+          <p className="p-medium-14 md:p-medium-16 text-grey-600">{event.description}</p>
         </Link>
 
         <div className="flex-between w-full">

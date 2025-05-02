@@ -9,12 +9,21 @@ const Header = () => {
   return (
     <header className="w-full absolute z-10">
       <div className="wrapper flex items-center justify-between">
-        <Link href="/" className="w-36">
-          <Image 
-            src="/assets/images/logo.svg" width={128} height={38}
-            alt="Evenzy logo" 
+        <div className="flex items-center gap-4 ">
+
+          <Link href="/" className="w-36">
+            <Image
+              src="/assets/images/logo.png" width={128} height={38}
+              alt="Evenzy logo"
+            />
+          </Link>
+          <Link href="https://github.com/ThisIsSahaj/Evenzy" target="_blank">
+          <Image
+            src="/assets/images/github.png" width={38} height={28}
+            alt="Github"
           />
-        </Link>
+          </Link>
+        </div>
 
         <SignedIn>
           <nav className="md:flex-between hidden w-full max-w-xs">
@@ -22,7 +31,10 @@ const Header = () => {
           </nav>
         </SignedIn>
 
+
+
         <div className="flex w-32 justify-end gap-3">
+
           <SignedIn>
             <UserButton afterSignOutUrl="/" />
             <MobileNav />
