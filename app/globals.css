@@ -77,6 +77,14 @@ body {
   font-family: var(--font-poppins)
 }
 
+@font-face {
+  font-family: 'Kagitingan-Bold';
+  src: url('/fonts/kagitingan/Kagitingan-Bold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
 .filter-grey {
   filter: brightness(0) saturate(100%) invert(47%) sepia(0%) saturate(217%)
     hue-rotate(32deg) brightness(98%) contrast(92%);

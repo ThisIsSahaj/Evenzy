@@ -8,7 +8,12 @@ const Orders = async ({ searchParams }: SearchParamProps) => {
   const eventId = (searchParams?.eventId as string) || ''
   const searchText = (searchParams?.query as string) || ''
 
-  const orders = await getOrdersByEvent({ eventId, searchString: searchText })
+  console.log('eventId', eventId);
+  console.log('searchText', searchText);
+ console.log('searchParams', searchParams);
+  
+
+  const orders = await getOrdersByEvent({ searchString: searchText, eventId })
 
   return (
     <>
@@ -31,7 +36,7 @@ const Orders = async ({ searchParams }: SearchParamProps) => {
               <th className="min-w-[100px] py-3 text-right">Amount</th>
             </tr>
           </thead>
-          <tbody>
+          {/* <tbody>
             {orders && orders.length === 0 ? (
               <tr className="border-b">
                 <td colSpan={5} className="py-4 text-center text-gray-500">
@@ -59,7 +64,7 @@ const Orders = async ({ searchParams }: SearchParamProps) => {
                   ))}
               </>
             )}
-          </tbody>
+          </tbody> */}
         </table>
       </section>
     </>

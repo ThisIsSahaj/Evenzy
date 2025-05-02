@@ -20,11 +20,12 @@ module.exports = withUt({
     extend: {
       colors: {
         primary: {
-          500: '#624CF5',
+          500: '#6d18ff',
           50: ' #F6F8FD',
-          DEFAULT: '#624CF5',
+          DEFAULT: '#6d18ff',
           foreground: 'hsl(var(--primary-foreground))',
         },
+        
         coral: {
           500: '#15BF59',
         },
@@ -42,7 +43,7 @@ module.exports = withUt({
         ring: 'hsl(var(--ring))',
         foreground: 'hsl(var(--foreground))',
         secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
+          DEFAULT: '#c9ff18',
           foreground: 'hsl(var(--secondary-foreground))',
         },
         destructive: {
@@ -66,8 +67,11 @@ module.exports = withUt({
           foreground: 'hsl(var(--card-foreground))',
         },
       },
+      
       fontFamily: {
         poppins: ['var(--font-poppins)'],
+        kagitingan: ['Kagitingan-Bold', 'sans-serif'],
+    
       },
       backgroundImage: {
         'dotted-pattern': "url('/assets/images/dotted-pattern.png')",
@@ -92,6 +96,7 @@ module.exports = withUt({
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+    
     },
   },
   plugins: [require('tailwindcss-animate')],

@@ -1,66 +1,170 @@
-import CategoryFilter from '@/components/shared/CategoryFilter';
-import Collection from '@/components/shared/Collection'
-import Search from '@/components/shared/Search';
+'use client'
+
 import { Button } from '@/components/ui/button'
-import { getAllEvents } from '@/lib/actions/event.actions';
-import { SearchParamProps } from '@/types';
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import Lenis from "lenis";
+import Pic1 from '../../public/assets/images/hifive.png'
+import Pic2 from '../../public/assets/images/friends.png'
+import Pic3 from '../../public/assets/images/bg3.png'
+import Pic4 from '../../public/assets/images/bg3Mobile.png'
+import { getAllEvents } from '@/lib/actions/event.actions';
+import Collection from '@/components/shared/Collection';
+import AllEventsCards from '@/components/shared/AllEventsCards';
+import Footer from '@/components/shared/Footer';
 
-export default async function Home({ searchParams }: SearchParamProps) {
-  const page = Number(searchParams?.page) || 1;
-  const searchText = (searchParams?.query as string) || '';
-  const category = (searchParams?.category as string) || '';
+interface SectionProps {
+  scrollYProgress: any;
+  events: any[];
+}
 
-  const events = await getAllEvents({
-    query: searchText,
-    category,
-    page,
-    limit: 6
-  })
+export default function Home() {
 
+  const [events, setEvents] = useState<any>([]);
+
+
+  const container = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start start", "end end"],
+  });
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const eventsData = await getAllEvents({
+        query: '',
+        category: 'all',
+        page: 1,
+        limit: 6,
+      });
+      setEvents(eventsData?.data);
+    };
+
+    fetchEvents();
+  }, []);
+
+  useEffect(() => {
+    const lenis = new Lenis();
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+  }, []);
   return (
     <>
-      <section className="bg-primary-50 bg-dotted-pattern bg-contain py-5 md:py-10">
-        <div className="wrapper grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-0">
-          <div className="flex flex-col justify-center gap-8">
-            <h1 className="h1-bold">Host, Connect, Celebrate: Your Events, Our Platform!</h1>
-            <p className="p-regular-20 md:p-regular-24">Book and learn helpful tips from 3,168+ mentors in world-class companies with our global community.</p>
-            <Button size="lg" asChild className="button w-full sm:w-fit">
-              <Link href="#events">
-                Explore Now
-              </Link>
-            </Button>
-          </div>
-
-          <Image 
-            src="/assets/images/hero.png"
-            alt="hero"
-            width={1000}
-            height={1000}
-            className="max-h-[70vh] object-contain object-center 2xl:max-h-[50vh]"
-          />
-        </div>
-      </section> 
-
-      <section id="events" className="wrapper my-8 flex flex-col gap-8 md:gap-12">
-        <h2 className="h2-bold">Trust by <br /> Thousands of Events</h2>
-
-        <div className="flex w-full flex-col gap-5 md:flex-row">
-          <Search />
-          <CategoryFilter />
-        </div>
-
-        <Collection 
-          data={events?.data}
-          emptyTitle="No Events Found"
-          emptyStateSubtext="Come back later"
-          collectionType="All_Events"
-          limit={6}
-          page={page}
-          totalPages={events?.totalPages}
-        />
-      </section>
+      <main ref={container} className="relative h-[200vh] bg-primary-500">
+        <Section1 scrollYProgress={scrollYProgress} events={events} />
+        <Section2 scrollYProgress={scrollYProgress} events={events} />
+        <Section3 scrollYProgress={scrollYProgress} events={events} />
+      </main>
     </>
   )
 }
+const Section1 = ({ scrollYProgress }: SectionProps) => {
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [0, -5]);
+
+  return (
+    <motion.div
+      style={{ scale, rotate }}
+      className=" font-kagitingan sticky top-0 h-screen bg-secondary text-[3.5vw] font-bold text-primary-500 flex flex-col items-center justify-center pb-[10vh] rounded-2xl"
+    >
+      {/* <Image
+        src={Pic1}
+        alt="img"
+        placeholder="blur"
+        fill
+        className="rounded-2xl "
+      /> */}
+      <p className=' text-center text-5xl flex flex-wrap lg:text-[3.5vw]'>Host, Connect, Celebrate 🎉</p>
+      <p className='sm:hidden text-center text-5xl flex flex-wrap lg:text-[3.5vw]'>Your Events Our Platform!</p>
+      
+
+      <div className="hidden sm:flex gap-4 ">
+        <p className='text-center text-5xl flex  lg:text-[3.5vw]'>Your Events</p>
+        <div className=" relative w-[12.5vw] h-[9.5vw] ">
+          <Image
+            src={Pic2}
+            alt="img"
+            fill
+          />
+        </div>
+        <p className='text-center text-5xl lg:text-[3.5vw]'>Our Platform!</p>
+      </div>
+    </motion.div>
+  );
+};
+
+
+const Section2 = ({ scrollYProgress}: SectionProps) => {
+  const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [5, 0]);
+
+  return (
+    <motion.div
+      style={{ scale, rotate }}
+      className="relative h-[100vh] bg-white rounded-t-2xl flex items-center justify-center pb-[10vh] font-kagitingan text-center "
+    >
+
+      <p className="z-10 my-20 text-center text-5xl flex flex-wrap justify-center items-center  lg:text-[3.5vw]"> Trusted by <span className='bg-secondary px-2 text-black'>Thousands</span> of Events</p>
+         <Image
+        src={Pic3}
+        alt="img"
+        placeholder="blur"
+        fill
+        className="rounded-2xl hidden md:block"
+      />
+      
+         <Image
+        src={Pic4}
+        alt="img"
+        placeholder="blur"
+        fill
+        className="rounded-2xl  md:hidden"
+      />
+
+     
+
+    </motion.div>
+  );
+};
+
+
+const Section3 = ({ events }: SectionProps) => {
+  const targetRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+  });
+
+  const x = useTransform(scrollYProgress, [0, 1], ["80%", "-45%"]);
+
+  return (
+    <section ref={targetRef} className="relative h-[300vh] bg-primary-500 w-full py-10 ">
+      <div className="sticky top-0 flex-col h-screen items-center overflow-hidden">
+        <p className="p-bold my-20 font-bold text-center text-white font-kagitingan  
+        text-5xl flex flex-wrap justify-center  lg:text-[3.5vw]
+        ">
+         <span className='bg-secondary px-2 mx-2 text-black '>Featured</span>Events</p>
+
+        <div >
+
+
+          <motion.div style={{ x }} className="flex gap-4 w-full " >
+            
+            {events.map((event) => {
+              return <li className='w-full'>
+
+                <AllEventsCards event={event} />
+              </li> 
+            })}
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};

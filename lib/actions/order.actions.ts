@@ -7,10 +7,11 @@ import { handleError } from '../utils';
 import { connectToDatabase } from '../database';
 import Order from '../database/models/order.model';
 import Event from '../database/models/event.model';
-import {ObjectId} from 'mongodb';
+import { ObjectId } from 'mongodb';
 import User from '../database/models/user.model';
 
 export const checkoutOrder = async (order: CheckoutOrderParams) => {
+  // const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY!);
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
   const price = order.isFree ? 0 : Number(order.price) * 100;
@@ -62,11 +63,23 @@ export const createOrder = async (order: CreateOrderParams) => {
 
 // GET ORDERS BY EVENT
 export async function getOrdersByEvent({ searchString, eventId }: GetOrdersByEventParams) {
+
+  console.log(searchString, eventId);
   try {
-    await connectToDatabase()
+    await connectToDatabase();
 
     if (!eventId) throw new Error('Event ID is required')
-    const eventObjectId = new ObjectId(eventId)
+    // const eventObjectId = new ObjectId(eventId)
+  const eventObjectId = eventId ? new ObjectId(eventId) : null;
+
+    console.log('eventObjectId', eventObjectId);
+
+    if (!eventObjectId) {
+      throw new Error('Invalid or missing eventId');
+    }
+    else{
+      console.log('eventObjectId created successfullyh', eventObjectId);
+    }
 
     const orders = await Order.aggregate([
       {
