@@ -15,7 +15,7 @@ const Footer = () => {
         </Link>
 
         <p>2025 Evenzy. All Rights reserved.</p>
-        <p>Made with Coffee & Love by <a href="https://www.linkedin.com/in/this-is-sahaj-jain/">This Is Sahaj</a></p>
+        <p className="flex flex-wrap">Made with Coffee <img src="/assets/images/coffeeIcon.png" alt="" width={20} height={20} /> & Love by <a href="https://www.linkedin.com/in/this-is-sahaj-jain/" className="underline">This Is Sahaj</a></p>
       </div>
     </footer>
   )

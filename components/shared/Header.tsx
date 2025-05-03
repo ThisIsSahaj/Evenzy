@@ -5,9 +5,19 @@ import { Button } from "../ui/button"
 import NavItems from "./NavItems"
 import MobileNav from "./MobileNav"
 
-const Header = () => {
+
+interface HeaderProps {
+  currentPath: string;
+}
+
+
+
+  const Header: React.FC<HeaderProps> = ({ currentPath }) => {
+
+  const isRootPath = currentPath === "/";
+  
   return (
-    <header className="w-full absolute z-10">
+    <header className={`w-full ${isRootPath ? "absolute" : "relative"} z-10`}>
       <div className="wrapper flex items-center justify-between">
         <div className="flex items-center gap-4 ">
 

@@ -14,6 +14,7 @@ import { getAllEvents } from '@/lib/actions/event.actions';
 import Collection from '@/components/shared/Collection';
 import AllEventsCards from '@/components/shared/AllEventsCards';
 import Footer from '@/components/shared/Footer';
+import { SmoothCursor } from '@/components/ui/smooth-cursor';
 
 interface SectionProps {
   scrollYProgress: any;
@@ -61,6 +62,7 @@ export default function Home() {
         <Section1 scrollYProgress={scrollYProgress} events={events} />
         <Section2 scrollYProgress={scrollYProgress} events={events} />
         <Section3 scrollYProgress={scrollYProgress} events={events} />
+        <SmoothCursor />
       </main>
     </>
   )
