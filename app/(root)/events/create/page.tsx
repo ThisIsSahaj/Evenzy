@@ -10,7 +10,7 @@ const CreateEvent = () => {
     <>
       <section className="bg-white  bg-cover bg-center py-5 md:py-10">
         <h3 className="wrapper h3-bold text-center sm:text-left ">
-          <span className="bg-secondary">Create Event</span></h3>
+          <span className="bg-secondary font-kagitingan p-2">Create Event</span></h3>
       </section>
 
       <div className="wrapper my-8">

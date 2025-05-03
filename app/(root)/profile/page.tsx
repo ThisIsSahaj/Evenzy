@@ -25,7 +25,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
       {/* My Tickets */}
       <section className="bg-white  bg-cover bg-center py-5 md:py-10">
         <div className="wrapper flex items-center justify-center sm:justify-between">
-          <h3 className='h3-bold text-center sm:text-left bg-secondary'>My Tickets</h3>
+          <h3 className='h3-bold text-center sm:text-left bg-secondary font-kagitingan p-2'>My Tickets</h3>
           <Button asChild size="lg" className="button hidden sm:flex">
             <Link href="/explore">
               Explore More Events
@@ -50,7 +50,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
       {/* Events Organized */}
       <section className="bg-white  bg-cover bg-center py-5 md:py-10">
         <div className="wrapper flex items-center justify-center sm:justify-between">
-          <h3 className='h3-bold text-center sm:text-left bg-secondary'>Events Organized</h3>
+          <h3 className='h3-bold text-center sm:text-left bg-secondary font-kagitingan p-2'>Events Organized</h3>
           <Button asChild size="lg" className="button hidden sm:flex">
             <Link href="/events/create">
               Create New Event

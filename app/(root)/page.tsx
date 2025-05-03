@@ -83,9 +83,17 @@ const Section1 = ({ scrollYProgress }: SectionProps) => {
         fill
         className="rounded-2xl "
       /> */}
-      <p className=' text-center text-5xl flex flex-wrap lg:text-[3.5vw]'>Host, Connect, Celebrate 🎉</p>
-      <p className='sm:hidden text-center text-5xl flex flex-wrap lg:text-[3.5vw]'>Your Events Our Platform!</p>
-      
+      <p className='mt-20 sm:mt-0 text-center text-5xl flex flex-wrap lg:text-[3.5vw]'>Host, Connect, Celebrate 🎉</p>
+      <div className='sm:hidden flex flex-col items-center justify-center'>
+        <p className='text-center text-5xl flex flex-wrap lg:text-[3.5vw]'>Your Events Our Platform!</p>
+        <Image
+            src={Pic2}
+            alt="img"
+            height={200}
+            width={200}
+          />
+      </div>
+
 
       <div className="hidden sm:flex gap-4 ">
         <p className='text-center text-5xl flex  lg:text-[3.5vw]'>Your Events</p>
@@ -94,6 +102,7 @@ const Section1 = ({ scrollYProgress }: SectionProps) => {
             src={Pic2}
             alt="img"
             fill
+            className='hover:scale-105 transition-all duration-300 rounded-2xl'
           />
         </div>
         <p className='text-center text-5xl lg:text-[3.5vw]'>Our Platform!</p>
@@ -103,7 +112,7 @@ const Section1 = ({ scrollYProgress }: SectionProps) => {
 };
 
 
-const Section2 = ({ scrollYProgress}: SectionProps) => {
+const Section2 = ({ scrollYProgress }: SectionProps) => {
   const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
   const rotate = useTransform(scrollYProgress, [0, 1], [5, 0]);
 
@@ -114,15 +123,15 @@ const Section2 = ({ scrollYProgress}: SectionProps) => {
     >
 
       <p className="z-10 my-20 text-center text-5xl flex flex-wrap justify-center items-center  lg:text-[3.5vw]"> Trusted by <span className='bg-secondary px-2 text-black'>Thousands</span> of Events</p>
-         <Image
+      <Image
         src={Pic3}
         alt="img"
         placeholder="blur"
         fill
         className="rounded-2xl hidden md:block"
       />
-      
-         <Image
+
+      <Image
         src={Pic4}
         alt="img"
         placeholder="blur"
@@ -130,7 +139,7 @@ const Section2 = ({ scrollYProgress}: SectionProps) => {
         className="rounded-2xl  md:hidden"
       />
 
-     
+
 
     </motion.div>
   );
@@ -151,18 +160,18 @@ const Section3 = ({ events }: SectionProps) => {
         <p className="p-bold my-20 font-bold text-center text-white font-kagitingan  
         text-5xl flex flex-wrap justify-center  lg:text-[3.5vw]
         ">
-         <span className='bg-secondary px-2 mx-2 text-black '>Featured</span>Events</p>
+          <span className='bg-secondary px-2 mx-2 text-black '>Featured</span>Events</p>
 
         <div >
 
 
           <motion.div style={{ x }} className="flex gap-4 w-full " >
-            
+
             {events.map((event) => {
               return <li className='w-full'>
 
                 <AllEventsCards event={event} />
-              </li> 
+              </li>
             })}
           </motion.div>
         </div>
