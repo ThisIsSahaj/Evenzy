@@ -1,19 +1,14 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Lenis from "lenis";
-import Pic1 from '../../public/assets/images/hifive.png'
 import Pic2 from '../../public/assets/images/friends.png'
 import Pic3 from '../../public/assets/images/bg3.png'
 import Pic4 from '../../public/assets/images/bg3Mobile.png'
 import { getAllEvents } from '@/lib/actions/event.actions';
-import Collection from '@/components/shared/Collection';
 import AllEventsCards from '@/components/shared/AllEventsCards';
-import Footer from '@/components/shared/Footer';
 import { SmoothCursor } from '@/components/ui/smooth-cursor';
 
 interface SectionProps {
